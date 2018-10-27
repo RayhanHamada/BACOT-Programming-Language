@@ -1,0 +1,40 @@
+Daftar Syntax
+
+Deklarasi
+
+variabel	: <tipeData> <izinAkses> <identifier= nama variabel>;
+			: <tipeData> <izinAkses> [<identifier= nama variabel>,...];
+
+fungsi		: fungsi <izinAkses> <tipeData> [<tipeData> <identifier= nama fungsi>([<parameter= variabel>...]),...];
+
+kelas		: kelas <identifier= nama kelas> mewarisi? <identifierKelasAtas>;
+
+
+Definisi
+
+variabel	: <tipeData> <izinAkses> [<identifier= nama variabel>,...] = [<nilai>,...];
+
+fungsi		: fungsi <izinAkses> <tipeData> <identifier= nama fungsi>([<tipeData> <parameter = variabel>,...]){}
+
+kelas		: kelas <identifier= nama kelas> mewarisi? <identifierKelasAtas>{}
+
+fungsi Konstruktor : fungsi <izinAkses> <tipeData> <identifier= nama fungsi>([<tipeData> <parameter= variabel>,...]) tugaskan [<parameter1> ke <identifier= variabel lokal>,...]{}
+
+
+Pemanggilan Fungsi
+
+Pemanggilan Fungsi Global: <identifier= nama fungsi>([<parameter1>....]);
+Pemanggilan Fungsi Kelas : <identifier= nama instansi>.<identifier= nama fungsi>([<parameter = nilai>,....]);
+
+
+
+Syntax Spesial
+
+Menggunakan keyword bahasa pengantar tertentu : lang <identifier= bahasa pengantar>;
+
+Mengimpor script : impor ["<String= path/direktori>" = <identifier= variabel>,...];
+
+Mengexport script : ekspor ["<String= path/direktori>" = <identifier= variabel>,...];
+
+
+
