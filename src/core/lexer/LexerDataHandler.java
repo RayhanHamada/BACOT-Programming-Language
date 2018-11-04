@@ -2,7 +2,7 @@ package core.lexer;
 
 import java.util.ArrayList;
 
-public class DataHandler {
+public class LexerDataHandler {
 
 	private static ArrayList<String> stringRepToken = new ArrayList<String>();
 	private static ArrayList<Token> tokens = new ArrayList<>();

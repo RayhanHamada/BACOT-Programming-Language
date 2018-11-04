@@ -1,1 +1,1 @@
-var a sebagai Integer;
+var a,b sebagai Integer Privat;

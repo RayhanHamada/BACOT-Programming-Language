@@ -5,27 +5,20 @@ import java.util.ArrayList;
 public class Parser {
 
 	
-	
-	public void variableDeclaration()
+	public void parse()
 	{
+		String currentTokenTypeSeq = "";
+		ArrayList<Token> currentTokenSeq = new ArrayList<Token>();
+		String patVariableGlobalDecl = "KEYWORD\\sIDENTIFIER\\s(COMMA IDENTIFIER)*(\\sKEYWORD){2,5}\\sSEMICOLON";
 		
-	}
-	
-	public void evaluate()
-	{
-		
-		String currentTokenTypeSequence = "";
-		ArrayList<Token> currentTokenSequence = new ArrayList<>();
-		String polaVarDecl = "^KEYWORD IDENTIFIER(SEPARATOR IDENTIFIER)?(\\sKEYWORD){2,5} SEPARATOR";
-		String polaVarInst = "^(KEYWORD\\s){2,4}IDENTIFIER SEPARATOR";
-		String PolaForLoop = "^KEYWORD SEPARATOR";
-		for (Token t : DataHandler.getTokens())
+		for (Token t : LexerDataHandler.getTokens())
 		{
-			currentTokenSequence.add(t);
+			currentTokenTypeSeq += t.getType() + " ";
 			
-			
-			
+			System.out.println(currentTokenTypeSeq);
+			if (currentTokenTypeSeq.trim().matches(patVariableGlobalDecl)) System.out.println("Ketemu");
 			
 		}
+		
 	}
 }
