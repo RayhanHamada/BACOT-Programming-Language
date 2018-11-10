@@ -4,8 +4,9 @@ import java.util.ArrayList;
 
 public class LexerDataHandler {
 
-	private static ArrayList<String> stringRepToken = new ArrayList<String>();
+	private static ArrayList<String> stringRepToken = new ArrayList<>();
 	private static ArrayList<Token> tokens = new ArrayList<>();
+	
 	
 	public static ArrayList<Token> getTokens() 
 	{

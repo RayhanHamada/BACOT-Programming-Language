@@ -3,9 +3,9 @@ package core.lexer;
 public class Token {
 
 	private String val;
-	private TokenType type;
+	private TokenID type;
 	
-	public Token(String val, TokenType type)
+	public Token(String val, TokenID type)
 	{
 		this.val = val;
 		this.type = type;
@@ -16,7 +16,7 @@ public class Token {
 		return val;
 	}
 	
-	public TokenType getType()
+	public TokenID getType()
 	{
 		return type;
 	}

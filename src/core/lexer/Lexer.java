@@ -10,7 +10,7 @@ public class Lexer {
 	
 	private String lexeme;
 	//keyword list for the language
-	private String patKeyword = "^(var|sebagai|Integer|Statis|Konstan|Privat|Publik)";
+	private String patKeyword = "^(var|sebagai|integer32|integer64|statis|konstan|privat|publik)";
 	
 	//pola token
 	private String patIdentifier = "^[A-Za-z_][\\w]*";
@@ -42,19 +42,46 @@ public class Lexer {
 			if (lexeme.matches(patIdentifier+".*") && !lexeme.matches(patKeyword + ".*"))
 			{
 				currentToken = cr.getFirstOccur(patIdentifier, lexeme);
-				LexerDataHandler.addToken(new Token(currentToken, TokenType.IDENTIFIER));
+				LexerDataHandler.addToken(new Token(currentToken, TokenID.IDENTIFIER));
 				lexeme = lexeme.replaceFirst(currentToken, "");
 			}
 			else if (lexeme.matches(patKeyword + ".*"))
 			{
-				currentToken = cr.getFirstOccur(patKeyword, lexeme);
-				LexerDataHandler.addToken(new Token(currentToken, TokenType.KEYWORD));
-				lexeme = lexeme.replaceFirst(currentToken, "");
+				if (lexeme.matches("^var.*"))
+				{
+					currentToken = cr.getFirstOccur("var", lexeme);
+					LexerDataHandler.addToken(new Token(currentToken, TokenID.VAR));
+					lexeme = lexeme.replaceFirst(currentToken, "");
+				}
+				else if (lexeme.matches("^sebagai.*"))
+				{
+					currentToken = cr.getFirstOccur("sebagai", lexeme);
+					LexerDataHandler.addToken(new Token(currentToken, TokenID.SEBAGAI));
+					lexeme = lexeme.replaceFirst(currentToken, "");
+				}
+				else if (lexeme.matches("^konstan.*"))
+				{
+					currentToken = cr.getFirstOccur("konstan", lexeme);
+					LexerDataHandler.addToken(new Token(currentToken, TokenID.CONSTANT));
+					lexeme = lexeme.replaceFirst(currentToken, "");
+				}
+				else if (lexeme.matches("^(privat|publik|terproteksi).*"))
+				{
+					currentToken = cr.getFirstOccur("(privat|publik|terproteksi)", lexeme);
+					LexerDataHandler.addToken(new Token(currentToken, TokenID.ACCESS_MODIFIER));
+					lexeme = lexeme.replaceFirst(currentToken, "");
+				}
+				else if (lexeme.matches("^(integer(32|64)|float(32|64)|karakter|string).*"))
+				{
+					currentToken = cr.getFirstOccur("(integer(32|64)|float(32|64)|karakter|string)", lexeme);
+					LexerDataHandler.addToken(new Token(currentToken, TokenID.PRIMITIVE_DATA_TYPE));
+					lexeme = lexeme.replaceFirst(currentToken, "");
+				}
 			}
 			else if (lexeme.matches(patAngka+".*"))
 			{
 				currentToken = cr.getFirstOccur(patAngka, lexeme);
-				LexerDataHandler.addToken(new Token(currentToken, TokenType.NUM_LITERAL));
+				LexerDataHandler.addToken(new Token(currentToken, TokenID.NUM_LITERAL));
 				lexeme = lexeme.replaceFirst(currentToken, "");
 			}
 			else if (lexeme.matches("^\\s+.*"))
@@ -64,13 +91,13 @@ public class Lexer {
 			else if (lexeme.matches(patString + ".*"))
 			{
 				currentToken = cr.getFirstOccur(patString, lexeme).replaceFirst("^\"", "").replaceFirst("\"$", "");
-				LexerDataHandler.addToken(new Token(currentToken, TokenType.STRING_LITERAL));
+				LexerDataHandler.addToken(new Token(currentToken, TokenID.STRING_LITERAL));
 				lexeme = lexeme.substring(currentToken.length()+2);
 			}
 			else if (lexeme.matches(patChar+".*"))
 			{
 				currentToken = cr.getFirstOccur(patChar, lexeme);
-				LexerDataHandler.addToken(new Token(Character.toString(currentToken.toCharArray()[1]), TokenType.CHAR_LITERAL));
+				LexerDataHandler.addToken(new Token(Character.toString(currentToken.toCharArray()[1]), TokenID.CHAR_LITERAL));
 				lexeme = lexeme.replaceFirst(currentToken, "");
 			}
 			else if (lexeme.matches(patSeparator+".*"))
@@ -78,43 +105,43 @@ public class Lexer {
 				if (lexeme.matches("^\\{.*"))
 				{
 					currentToken = cr.getFirstOccur("\\{", lexeme);
-					LexerDataHandler.addToken(new Token(currentToken, TokenType.LBRACKET));
+					LexerDataHandler.addToken(new Token(currentToken, TokenID.LBRACKET));
 					lexeme = lexeme.replaceFirst("\\" + currentToken, "");
 				}
 				else if (lexeme.matches("^\\}.*"))
 				{
 					currentToken = cr.getFirstOccur("\\}", lexeme);
-					LexerDataHandler.addToken(new Token(currentToken, TokenType.RBRACKET));
+					LexerDataHandler.addToken(new Token(currentToken, TokenID.RBRACKET));
 					lexeme = lexeme.replaceFirst("\\" + currentToken, "");
 				}
 				else if (lexeme.matches("^\\(.*"))
 				{
 					currentToken = cr.getFirstOccur("\\(", lexeme);
-					LexerDataHandler.addToken(new Token(currentToken, TokenType.LPAREN));
+					LexerDataHandler.addToken(new Token(currentToken, TokenID.LPAREN));
 					lexeme = lexeme.replaceFirst("\\" + currentToken, "");
 				}
 				else if (lexeme.matches("^\\).*"))
 				{
 					currentToken = cr.getFirstOccur("\\)", lexeme);
-					LexerDataHandler.addToken(new Token(currentToken, TokenType.RPAREN));
+					LexerDataHandler.addToken(new Token(currentToken, TokenID.RPAREN));
 					lexeme = lexeme.replaceFirst("\\" + currentToken, "");
 				}
 				else if (lexeme.matches("^;.*"))
 				{
 					currentToken = cr.getFirstOccur(";", lexeme);
-					LexerDataHandler.addToken(new Token(currentToken, TokenType.SEMICOLON));
+					LexerDataHandler.addToken(new Token(currentToken, TokenID.SEMICOLON));
 					lexeme = lexeme.replaceFirst(currentToken, "");
 				}
 				else if (lexeme.matches("^:.*"))
 				{
 					currentToken = cr.getFirstOccur(":", lexeme);
-					LexerDataHandler.addToken(new Token(":", TokenType.COLON));
+					LexerDataHandler.addToken(new Token(":", TokenID.COLON));
 					lexeme = lexeme.replaceFirst(currentToken, "");
 				}
 				else if (lexeme.matches("^\\,.*"))
 				{
 					currentToken = cr.getFirstOccur(",", lexeme);
-					LexerDataHandler.addToken(new Token(currentToken, TokenType.COMMA));
+					LexerDataHandler.addToken(new Token(currentToken, TokenID.COMMA));
 					lexeme = lexeme.replaceFirst(currentToken, "");
 				}
 				
@@ -122,21 +149,16 @@ public class Lexer {
 			else if (lexeme.matches(patLogika+".*"))
 			{
 				currentToken = cr.getFirstOccur(patLogika, lexeme);
-				LexerDataHandler.addToken(new Token(currentToken, TokenType.LOG_LITERAL));
+				LexerDataHandler.addToken(new Token(currentToken, TokenID.LOG_LITERAL));
 				lexeme = lexeme.replaceFirst(patLogika, "");
 			}
 			else if (lexeme.matches(patOperator+".*"))
 			{
 				currentToken = cr.getFirstOccur(patOperator, lexeme);
-				LexerDataHandler.addToken(new Token(currentToken, TokenType.OPERATOR));
+				LexerDataHandler.addToken(new Token(currentToken, TokenID.OPERATOR));
 				lexeme = lexeme.replaceFirst(patOperator, "");
 			}
-			else if (lexeme.matches(patNull+".*"))
-			{
-				currentToken = cr.getFirstOccur(patNull, lexeme);
-				LexerDataHandler.addToken(new Token(currentToken, TokenType.NULL_LITERAL));
-				lexeme = lexeme.replaceFirst(patNull, "");
-			}
+			
 			
 			currentToken = null;
 		}

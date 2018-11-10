@@ -4,12 +4,12 @@ import java.util.ArrayList;
 
 public class Parser {
 
-	
 	public void parse()
 	{
 		String currentTokenTypeSeq = "";
 		ArrayList<Token> currentTokenSeq = new ArrayList<Token>();
-		String patVariableGlobalDecl = "KEYWORD\\sIDENTIFIER\\s(COMMA IDENTIFIER)*(\\sKEYWORD){2,5}\\sSEMICOLON";
+		String patVariableGlobalDecl = "VAR\\sIDENTIFIER\\s(COMMA IDENTIFIER)*\\sSEBAGAI\\sPRIMITIVE_DATA_TYPE(\\sSTATIS)?(\\sCONSTANT)?\\sSEMICOLON";
+		
 		
 		for (Token t : LexerDataHandler.getTokens())
 		{
