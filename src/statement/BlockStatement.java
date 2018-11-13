@@ -1,4 +1,4 @@
-package core.lexer;
+package statement;
 
 /*
  * untuk:

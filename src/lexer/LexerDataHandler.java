@@ -1,4 +1,4 @@
-package core.lexer;
+package lexer;
 
 import java.util.ArrayList;
 
@@ -6,7 +6,6 @@ public class LexerDataHandler {
 
 	private static ArrayList<String> stringRepToken = new ArrayList<>();
 	private static ArrayList<Token> tokens = new ArrayList<>();
-	
 	
 	public static ArrayList<Token> getTokens() 
 	{
@@ -27,4 +26,7 @@ public class LexerDataHandler {
 	{
 		return stringRepToken;
 	}
+	
+	
+	
 }

@@ -1,1 +1,1 @@
-var a,b sebagai integer64 konstan;
+"rayhan hamada"

@@ -1,4 +1,4 @@
-package core.lexer;
+package lexer;
 
 public enum TokenID {
 	
@@ -15,6 +15,12 @@ public enum TokenID {
 	FLOAT_LITERAL,
 	INTEGER_LITERAL,
 	
+	//Assignment Operator
+	ASSIGN,
+	SHORTHAND_ASSIGN,
+	
+	//for Compare Operator
+	RELATIONAL,
 	
 	//for atom token (SEPARATOR)
 	LBRACKET,
@@ -24,9 +30,11 @@ public enum TokenID {
 	SEMICOLON,
 	COLON,
 	COMMA,
+	EQUALS,
 	
 	//for property modifier (functions, classes and variables)
-	PRIMITIVE_DATA_TYPE, // integer32, integer64, float32, float64, karakter, boolean, string
+	PRIMITIVE_TYPE, // integer32, integer64, float32, float64, karakter, boolean, string
+	DEFINED_TYPE,
 	ACCESS_MODIFIER, // publik, privat, terproteksi
 	
 	//for Keyword

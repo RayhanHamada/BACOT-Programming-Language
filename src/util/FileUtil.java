@@ -1,11 +1,11 @@
-package core.util;
+package util;
 
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class FileUtil {
 
-	public String fileToText(String path)
+	public static String fileToText(String path)
 	{
 		try {
 			return new String(Files.readAllBytes(Paths.get(path)));

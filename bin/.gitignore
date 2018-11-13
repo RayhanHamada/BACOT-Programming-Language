@@ -1,1 +1,7 @@
 /core/
+/error/
+/util/
+/statement/
+/parser/
+/lexer/
+/main/

@@ -1,6 +1,8 @@
-package core.lexer;
+package parser;
 
 import java.util.ArrayList;
+import lexer.LexerDataHandler;
+import lexer.Token;
 
 public class Parser {
 
@@ -8,7 +10,8 @@ public class Parser {
 	{
 		String currentTokenTypeSeq = "";
 		ArrayList<Token> currentTokenSeq = new ArrayList<Token>();
-		String patVariableGlobalDecl = "VAR\\sIDENTIFIER\\s(COMMA IDENTIFIER)*\\sSEBAGAI\\sPRIMITIVE_DATA_TYPE(\\sSTATIS)?(\\sCONSTANT)?\\sSEMICOLON";
+		// statement context
+		String patVariableGlobalDecl = "VAR\\sIDENTIFIER\\s(COMMA\\sIDENTIFIER\\s)*SEBAGAI\\sPRIMITIVE_TYPE(\\sSTATIS)?(\\sCONSTANT)?\\sSEMICOLON\\s?";
 		
 		
 		for (Token t : LexerDataHandler.getTokens())
@@ -19,6 +22,8 @@ public class Parser {
 			if (currentTokenTypeSeq.trim().matches(patVariableGlobalDecl)) System.out.println("Ketemu");
 			
 		}
+		
+//		ParserDataHandler.evaluateAllStatement();
 		
 	}
 }
