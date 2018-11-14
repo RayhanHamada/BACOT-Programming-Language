@@ -33,7 +33,7 @@ public class Lexer {
 	
 	public void startLex()
 	{
-		String currentToken = null;
+		String currentToken;
 		int currentLine = 1, currentRow = 1;
 		lexeme = lexeme.replaceAll(patComment, ""); // ignore comments
 		ArrayList<String> lines = new ArrayList<>(Arrays.asList(lexeme.split(System.lineSeparator())));
@@ -120,28 +120,28 @@ public class Lexer {
 						currentToken = cr.getFirstOccur("\\{", line);
 						LexerDataHandler.addToken(new Token(currentToken, TokenID.LBRACKET, currentLine, currentRow));
 						currentRow += currentToken.length();
-						line = line.replaceFirst("\\" + currentToken, "");
+						line = line.replaceFirst("\\\\" + currentToken, "");
 					} 
 					else if (line.matches("^\\}.*")) 
 					{
 						currentToken = cr.getFirstOccur("\\}", line);
 						LexerDataHandler.addToken(new Token(currentToken, TokenID.RBRACKET, currentLine, currentRow));
 						currentRow += currentToken.length();
-						line = line.replaceFirst("\\" + currentToken, "");
+						line = line.replaceFirst("\\\\" + currentToken, "");
 					} 
 					else if (line.matches("^\\(.*")) 
 					{
 						currentToken = cr.getFirstOccur("\\(", line);
 						LexerDataHandler.addToken(new Token(currentToken, TokenID.LPAREN, currentLine, currentRow));
 						currentRow += currentToken.length();
-						line = line.replaceFirst("\\" + currentToken, "");
+						line = line.replaceFirst("\\\\" + currentToken, "");
 					}
 					else if (line.matches("^\\).*")) 
 					{
 						currentToken = cr.getFirstOccur("\\)", line);
 						LexerDataHandler.addToken(new Token(currentToken, TokenID.RPAREN, currentLine, currentRow));
 						currentRow += currentToken.length();
-						line = line.replaceFirst("\\" + currentToken, "");
+						line = line.replaceFirst("\\\\" + currentToken, "");
 					}
 					else if (line.matches("^;.*")) 
 					{
@@ -209,7 +209,6 @@ public class Lexer {
 				currentToken = null;
 			}
 			currentLine++;
-			
 		}
 		for (Token t : LexerDataHandler.getTokens())
 		{
