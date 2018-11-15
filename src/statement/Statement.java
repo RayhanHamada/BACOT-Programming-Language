@@ -3,5 +3,5 @@ package statement;
 
 public interface Statement {
 
-	public void evaluate();
+	public int evaluate();
 }

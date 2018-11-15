@@ -3,13 +3,13 @@ package lexer;
 public class Token {
 
 	private String val;
-	private TokenID type;
+	private TokenID id;
 	private int linePos, rowPos, valueLength;
 	
 	public Token(String val, TokenID type, int  linePos, int rowPos)
 	{
 		this.val = val;
-		this.type = type;
+		this.id = type;
 		this.linePos = linePos;
 		this.rowPos = rowPos;
 		this.valueLength = val.length();
@@ -20,9 +20,9 @@ public class Token {
 		return val;
 	}
 	
-	public TokenID getType()
+	public TokenID getID()
 	{
-		return type;
+		return id;
 	}
 	
 	public int getLinePos()

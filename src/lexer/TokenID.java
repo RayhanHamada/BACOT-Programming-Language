@@ -34,7 +34,7 @@ public enum TokenID {
 	
 	//for property modifier (functions, classes and variables)
 	PRIMITIVE_TYPE, // integer32, integer64, float32, float64, karakter, boolean, string
-	DEFINED_TYPE,
+	REFERENCE_TYPE, // for object data type, built-in class or enum, user defined class, or user defined enum 
 	ACCESS_MODIFIER, // publik, privat, terproteksi
 	
 	//for Keyword

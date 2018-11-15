@@ -18,13 +18,12 @@ public class Lexer {
 	private String patIdentifier = "^[A-Za-z_][\\w]*";
 	private String patAngka = "^(\\d+\\.\\d*f?|^\\d*\\.\\d+f?|^\\d+)";
 	private String patString = "^((?<![\\\\])[\"])((?:.(?!(?<![\\\\])\\1))*.?)\\1";
-	private String patChar = "^'.+'";
+	private String patChar = "^'.'";
 	private String patLogika = "^(true|false)";
 	private String patOperator = "^(\\+|-|\\*|\\/|>>|<<|>|<|==|>=|<=|>|<|=|&|\\||%|!|\\^|\\(|\\))";
 //	private String patNull = "^nil";
 	private String patComment = "^//.*//";
 	private String patSeparator = "^[\\(\\)\\{\\}\\[\\];:,]";
-	
 	
 	public Lexer(String path)
 	{
@@ -35,14 +34,13 @@ public class Lexer {
 	public void startLex()
 	{
 		String currentToken = null;
-		int currentLine = 1, currentRow = 0;
+		int currentLine = 1, currentRow = 1;
 		lexeme = lexeme.replaceAll(patComment, ""); // ignore comments
 		ArrayList<String> lines = new ArrayList<>(Arrays.asList(lexeme.split(System.lineSeparator())));
 		
 		for (String line : lines) {
 			
 			while (line.length() > 0) {
-
 				
 				if (line.matches("^\\s.*"))
 				{
@@ -105,12 +103,14 @@ public class Lexer {
 				{
 					currentToken = cr.getFirstOccur(patString, line).replaceFirst("^\"", "").replaceFirst("\"$", "");
 					LexerDataHandler.addToken(new Token(currentToken, TokenID.STRING_LITERAL, currentLine, currentRow));
+					currentRow += currentToken.length() + 2;
 					line = line.substring(currentToken.length() + 2);
 				} 
 				else if (line.matches(patChar + ".*")) 
 				{
 					currentToken = cr.getFirstOccur(patChar, line);
 					LexerDataHandler.addToken(new Token(Character.toString(currentToken.toCharArray()[1]), TokenID.CHAR_LITERAL, currentLine, currentRow));
+					currentRow += 3;
 					line = line.replaceFirst(currentToken, "");
 				} 
 				else if (line.matches(patSeparator + ".*")) 
@@ -208,9 +208,7 @@ public class Lexer {
 
 				currentToken = null;
 			}
-			
 			currentLine++;
-			System.out.println(currentRow);
 			
 		}
 		for (Token t : LexerDataHandler.getTokens())

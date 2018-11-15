@@ -19,8 +19,8 @@ public class LexerDataHandler {
 	
 	public static void addStringRepToken(Token t)
 	{
-		stringRepToken.add("(" + t.getType().toString() + ", " + t.getVal() + ")");
-	}
+		stringRepToken.add("(" + t.getID().toString() + ", " + t.getVal() + ")");
+	}	
 	
 	public static ArrayList<String> getStringRepToken()
 	{

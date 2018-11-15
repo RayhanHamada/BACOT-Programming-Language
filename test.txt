@@ -1,1 +1,1 @@
-"rayhan hamada"
+var s1,s2 sebagai string;

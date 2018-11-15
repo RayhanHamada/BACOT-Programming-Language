@@ -16,7 +16,7 @@ public class Parser {
 		
 		for (Token t : LexerDataHandler.getTokens())
 		{
-			currentTokenTypeSeq += t.getType() + " ";
+			currentTokenTypeSeq += t.getID() + " ";
 			
 			System.out.println(currentTokenTypeSeq);
 			if (currentTokenTypeSeq.trim().matches(patVariableGlobalDecl)) System.out.println("Ketemu");
