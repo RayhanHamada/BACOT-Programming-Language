@@ -2,7 +2,7 @@ package component;
 
 public enum AccessModifier {
 
-	PUBLIK,
-	PRIVAT,
+	PRIVATE,
+	PUBLIC,
 	PROTECTED
 }

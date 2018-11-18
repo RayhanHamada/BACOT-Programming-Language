@@ -1,35 +1,48 @@
 package component;
 
+import datatype.DataType;
+
 public class Variable {
 
 	private String identifier;
+	private DataType type;
+	private boolean isStatic, isConstant;
 	private Value value;
-	private boolean isConstant, isStatic;
 	private AccessModifier accmod;
+	private Parameter objectParam;
 	
-	//for initializing
-	public Variable(String identifier, Value value, AccessModifier accmod, boolean isConstant, boolean isStatic)
+	// initialize variable (for primitive type only)
+	public Variable(String identifier, DataType type, Value value, boolean isStatic, boolean isConstant, AccessModifier accmod)
 	{
 		this.identifier = identifier;
+		this.type = type;
 		this.value = value;
+		this.isStatic = isStatic;
+		this.isConstant = isConstant;
 		this.accmod = accmod;
 	}
 	
-	//for declaring
-	public Variable(String identifier, AccessModifier accmod, boolean isConstant, boolean isStatic)
+	// declarating variable (for primitive type only)
+	public Variable(String identifier, DataType type, boolean isStatic, boolean isConstant, AccessModifier accmod)
 	{
 		this.identifier = identifier;
-		this.accmod = accmod;
-		this.isConstant = isConstant;
+		this.type = type;
 		this.isStatic = isStatic;
-		this.value = null;
+		this.isConstant = isConstant;
+		this.accmod = accmod;
 	}
 	
-	
-	public String getIdentifier()
+	// instantiate variable (for reference type) (with assignment)
+	public Variable(String identifier, Parameter objectParam, boolean isStatic, boolean isConstant, AccessModifier accmod)
 	{
-		return identifier;
+		this.identifier = identifier;
+		this.objectParam = objectParam;
+		this.isStatic = isStatic;
+		this.isConstant = isConstant;
+		this.accmod = accmod;
 	}
+	
+	// declarating variable (for reference type)
 	
 	
 	
