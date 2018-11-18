@@ -1,7 +1,7 @@
 package component;
 
-public class Value {
+public class Value<T> {
 
 	private String valRepr;
-	private 
+	private T 
 }
