@@ -1,4 +1,4 @@
-# BACOT Programming Language
+# BAKOT Programming Language
 
-Bahasa Anak Computer :v
+Bahasa Anak Komputer :v
 a simple programming language that i working on.
