@@ -1,1 +1,39 @@
-"Rayhan Hamada"
+impor math
+
+var float32 konstan privat PI = 3.141592;
+
+kelas Mobil 
+{
+	var jumlahBan, jumlahPintu sbg int32 privat;
+	var cc sbg string privat;
+	
+	
+	Mobil (jumlahBan sbg int32, jumlahPintu sbg int32, cc sbg float32, warna sbg string)
+	{
+		ini.jumlahBan = jumlahBan;
+		ini.jumlahPintu = jumlahPintu;
+		ini.cc = cc;
+		ini.warna = warna;
+	}
+	
+	fungsi string statis publik getWarna()
+	{
+		kembalikan warna;
+	}
+	
+	fungsi void statis publik setWarna(warna sbg string)
+	{
+		ini.warna = warna;
+	}
+	
+	
+}
+
+
+
+
+fungsi utama()
+{
+	obj Mobil m = new Mobil(4,4,1250.5, "biru");
+	print(m.getWarna);
+}
